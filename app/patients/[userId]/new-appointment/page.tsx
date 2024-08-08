@@ -1,8 +1,10 @@
 import AppointmentForm from '@/components/forms/AppointmentForm'
+import { getPatient } from '@/lib/actions/patient.actions'
 import Image from 'next/image'
 import React from 'react'
 
-const NewAppointment = () => {
+const NewAppointment = async({params:{userId}}:SearchParamProps) => {
+  const patient = await getPatient(userId)
   return (
     <div className="flex h-screen max-h-screen">
 
@@ -16,9 +18,13 @@ const NewAppointment = () => {
           className="mb-12 h-10 w-fit"
         />
 
-        <AppointmentForm  />
+        <AppointmentForm
+          type="create"
+          userId={userId}
+          patientId={patient.$id}
+        />
 
-          <p className="copyright py-12">
+          <p className="copyright py-12 mt-10">
             © 2024 CarePluse
           </p>
    
