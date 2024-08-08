@@ -97,7 +97,7 @@ export const updateAppointment = async({appointmentId,userId,appointment,type}:U
       const  smsMessage = `
       Hi,it's Careplus.
       Your appointment has been 
-      ${type === "schedule"? `scheduled for ${formatDateTime(appointment.schedule!)}`:`cancelled For the following reason ${appointment.cancellationReason}` }`
+      ${type === "schedule"? `scheduled for ${formatDateTime(appointment.schedule!).dateTime}`:`cancelled For the following reason ${appointment.cancellationReason}` }`
       await sendSMSNotification(userId,smsMessage)
     }
     revalidatePath('/admin');
